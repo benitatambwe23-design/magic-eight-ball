@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Magic Eight Ball</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Magic Eight Ball - Ask a yes/no question and get a random answer.">
+
+<style>
+body {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  background: linear-gradient(to bottom, #fdf2f8, #e6f2ff);
+  margin: 0;
+  padding: 0;
+}
+
+/* Decorative floral background */
+body::before {
+  content: "🌸 🦋 🌷 🦋 🌸";
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 40px;
+  opacity: 0.15;
+}
+
+body::after {
+  content: "🦋 🌸 🦋 🌷 🌸";
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 40px;
+  opacity: 0.15;
+}
+
+/* Center card */
+.container {
+  margin: 60px auto;
+  width: 60%;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+}
+
+h1 {
+  font-size: 36px;
+  color: #7a2c91;
+}
+
+input {
+  width: 60%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #d8b4fe;
+  text-align: center;
+}
+
+button {
+  background: linear-gradient(to right, #f472b6, #c084fc);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+#answer {
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #6b21a8;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌸 ✨ Magic Eight Ball ✨ 🦋</h1>
+
+<p>Ask a yes/no question:</p>
+
+<input id="questionInput" type="text"
+placeholder="Type your question here... 🌷">
+
+<br><br>
+
+<!-- All logic is directly inside onclick (NO user-defined function) -->
+<button onclick="
+  // Eight possible answers in an array
+  let answers = [
+    'Yes, definitely!',
+    'No, not at all.',
+    'Maybe, try again later.',
+    'The stars say yes.',
+    'Don’t count on it.',
+    'Ask again tomorrow.',
+    'Very likely!',
+    'Absolutely not.'
+  ];
+
+  // Get the user's question
+  let question =
+  document.getElementById('questionInput').value;
+
+  // Check if the user asked a question
+  if (question === '') {
+    document.getElementById('answer').innerHTML =
+    'Please ask a question first!';
+  } else {
+
+    // Pick a random answer from 0 to 7
+    let randomIndex =
+    Math.floor(Math.random() * 8);
+
+    // Display the answer
+    document.getElementById('answer').innerHTML =
+    answers[randomIndex];
+  }
+">
+Ask the Ball
+</button>
+
+<p id="answer"></p>
+
+</div>
+
+</body>
+</html>
